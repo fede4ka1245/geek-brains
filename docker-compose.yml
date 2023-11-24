@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  back:
+    build:
+      context: server
+      dockerfile: ./Dockerfile
+    ports:
+      - '8000:8000'
+    restart: always
+    env_file:
+      - .env
+  frontend:
+    build:
+      context: front
+      dockerfile: ./Dockerfile
+      args:
+        BACKEND_URL: ${BACKEND_URL}
+    ports:
+      - '3000:3000'
+    restart: always

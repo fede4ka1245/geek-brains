@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton {
+    width: 100%;
+    border-radius: var(--border-radius-md);
+    background: var(--hint-color);
+    animation: skeleton-loading 0.8s linear infinite alternate;
+}
+
+.item1 {
+    height: 160px;
+    width: 100%;
+}
+
+.item2 {
+    height: 100px;
+    margin-top: var(--space-sm);
+    width: 100%;
+}
+
+.item3 {
+    height: 80px;
+    margin-top: var(--space-sm);
+    width: 100%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.4;
+    }
+}

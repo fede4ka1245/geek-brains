@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, body {
+    background: var(--secondary-bg-color);
+}
+
+:root {
+    --primary-color: var(--tg-theme-button-color, #8774e1);
+    --text-primary-color: var(--tg-theme-button-color, #8774e1);
+    --bg-color: var(--tg-theme-bg-color, rgb(33,33,33));
+    --secondary-bg-color: var(--tg-theme-secondary-bg-color, black);
+    --text-secondary-color: var(--tg-theme-text-color, #aba9a9);
+    --hint-color: var(--tg-theme-hint-color, rgba(115, 115, 115, 0.8));
+
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 32px;
+
+    --font-size-sm: 18px;
+    --font-size-md: 26px;
+    --font-size-lg: 32px;
+
+    --border-radius-sm: 8px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 20px;
+
+    --element-border: 1px solid var(--hint-color);
+
+    --header-height: 60px;
+
+    --content-width: 800px;
+
+    --success-color: rgba(0, 128, 0, 0.8);
+    --error-color: rgba(255, 0, 0, 0.5);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--hint-color) auto;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--hint-color);
+}

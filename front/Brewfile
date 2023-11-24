@@ -1,0 +1,7 @@
+tap "homebrew/bundle"
+tap "homebrew/services"
+tap "supabase/tap"
+brew "cocoapods"
+brew "dbmate"
+brew "postgresql@14"
+cask "ngrok"
