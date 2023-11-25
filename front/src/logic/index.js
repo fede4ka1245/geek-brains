@@ -14,13 +14,13 @@ export const statuses = {
     order: 3,
     name: 'transcription'
   },
-  terms: {
-    order: 4,
-    name: 'terms'
-  },
   summary: {
-    order: 5,
+    order: 4,
     name: 'summary'
+  },
+  terms: {
+    order: 5,
+    name: 'terms'
   },
   died: {
     order: -1,

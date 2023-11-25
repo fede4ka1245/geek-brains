@@ -7,6 +7,7 @@ from src.models import Upload
 
 from .transcription import generate_transcription
 from .terms import generate_terms
+from .summary import generate_summary
 
 
 INPROCESSABLE_STATES = ["created", "terms", "died"]
@@ -26,6 +27,9 @@ def main(db_session, s3: BaseClient):
                 print(f"Generating transcription for upload with {upload_to_process.id}")
                 generate_transcription(db_session, s3, upload_to_process.id)
             case "transcription":
+                print(f"Generating summary for upload with {upload_to_process.id}")
+                generate_summary(db_session, s3, upload_to_process.id)
+            case "summary":
                 print(f"Generating terms for upload with {upload_to_process.id}")
                 generate_terms(db_session, s3, upload_to_process.id)
             case _:

@@ -80,6 +80,15 @@ async def get_upload_transcription(upload_id: int):
         return FileResponse(temporary_transcription_file.name)
 
 
+@app.get("/uploads/{upload_id}/summary")
+async def get_upload_transcription(upload_id: int):
+    upload = await get_upload(upload_id)
+
+    with tempfile.NamedTemporaryFile(delete=False) as temporary_summary_file:
+        s3.download_file(Filename=temporary_summary_file.name, Bucket=S3_AUDIO_BUCKET, Key=upload.get_summary_file_key())
+        return FileResponse(temporary_summary_file.name)
+
+
 @app.get("/uploads/{upload_id}/terms")
 async def get_upload_terms(upload_id: int):
     upload = await get_upload(upload_id)

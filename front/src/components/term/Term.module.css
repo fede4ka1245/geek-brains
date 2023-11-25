@@ -12,6 +12,9 @@
 }
 
 .strong {
-    font-weight: 700;
+    font-family: Ninito, sans-serif;
+    text-transform: capitalize;
+    font-weight: 1000 !important;
     margin-right: 5px;
+    color: var(--text-primary-color);
 }

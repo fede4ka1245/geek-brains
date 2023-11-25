@@ -18,3 +18,9 @@ class Upload(Base):
 
     def get_transcription_file_key(self) -> str:
         return str(self.id) + ".txt"
+
+    def get_srt_file_key(self) -> str:
+        return str(self.id) + ".srt"
+
+    def get_summary_file_key(self) -> str:
+        return str(self.id) + "-summary.txt"

@@ -16,7 +16,10 @@ export const uploadFile = (file) => {
 
 export const getTerms = (id) => {
   return fetch(`${process.env.REACT_APP_SERVER_API}/uploads/${id}/terms`)
-    .then((res) => res.json());
+    .then((res) => res.json())
+    .then((arr) => {
+      return [...arr.map((el) => ({ ...el, timeStart: el?.time_start || '-', timeEnd: el?.time_end || '-' }))];
+    });
 }
 
 export const getTranscription = (id) => {
