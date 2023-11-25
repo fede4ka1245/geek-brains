@@ -1,7 +1,7 @@
 import {configureStore, createAsyncThunk} from '@reduxjs/toolkit';
 import React from 'react';
 import { createSlice } from '@reduxjs/toolkit';
-import { uploadFile as uploadFileApi, getTerms as getTermsApi, getTranscription as getTranscriptionApi } from "../api";
+import { uploadFile as uploadFileApi, getTerms as getTermsApi, getTranscription as getTranscriptionApi, getSummary as getSummaryApi } from "../api";
 import {pullState} from "../logic";
 
 const getTerms = async (id) => {
@@ -19,7 +19,7 @@ const getTranscription = async (id) => {
 const getSummary = async (id) => {
   await pullState(id, 'summary');
 
-  return "await getTranscriptionApi(id)";
+  return await getSummary(id);
 }
 
 const summary = {
@@ -61,7 +61,7 @@ const loadTranscription = createAsyncThunk(
 const loadSummary = createAsyncThunk(
   'main/loadSummary',
   async (id) => {
-    return await getSummary(id)
+    return await getSummaryApi(id)
   }
 );
 

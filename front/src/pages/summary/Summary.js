@@ -13,6 +13,7 @@ import {loadSummary, loadTerms, loadTranscription} from "../../store";
 import {throttle} from "lodash";
 import styles from './Summary.module.css';
 import {eventBus, events, getSummariesHistory, setSummariesHistory} from "../../logic";
+import Button from "../../ui/button/Button";
 
 const tabs = {
   terms: {
@@ -20,7 +21,7 @@ const tabs = {
     id: 'terms'
   },
   summary: {
-    label: 'Краткое описание',
+    label: 'Краткий конспект',
     id: 'summary'
   },
   transcription: {
@@ -58,6 +59,32 @@ const Summary = () => {
   }, []);
   const navigate = useNavigate();
   const [isError, setIsError] = useState(false);
+
+  const downloadTxtFile = useCallback(() => {
+    const makeTextFile = function (text) {
+      const blob = new Blob([text], {type: 'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `#${id}` || 'download';
+      a.click();
+    };
+
+    let text = `ТЕРМИНЫ\n\nterms\n\nКРАТКИЙ КОНСПЕКТ\n\nsummary\n\nТРАНСКРИБАЦИЯ\n\ntrans`;
+
+    let terms = ''
+
+    for (const term of summary.terms) {
+      terms += `${term.name.toUpperCase()} - ${term.definition}\n\n`;
+    }
+
+    const summaryText = summary.summary;
+    const trans = summary.transcription;
+
+    text = text.replace('terms', terms).replace('summary', summaryText).replace('trans', trans);
+
+    makeTextFile(text)
+  }, [id, summary]);
 
   const onMainPageClick = useCallback(() => {
     navigate(routes.main);
@@ -253,6 +280,26 @@ const Summary = () => {
           ))}
         </Tabs>
       </Grid>
+      {!summary.isTermsLoading && (
+        <>
+          <Typography
+            fontWeight={'1000'}
+            fontSize={'25px'}
+            userSelect={'none'}
+            fontFamily={'Nunito'}
+            color={'white'}
+            mb={'var(--space-sm)'}
+            mt={'var(--space-md)'}
+          >
+            Скачайте конспект
+          </Typography>
+          <Grid mb={'var(--space-md)'}>
+            <Button variant={'filled'} onClick={downloadTxtFile}>
+              Открыть конспект
+            </Button>
+          </Grid>
+        </>
+      )}
       <Grid mt={'var(--space-md)'} id={tabs.terms.id} width={'100%'}>
         <PreloadContentPlacement
           header={tabs.terms.label}

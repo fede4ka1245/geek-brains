@@ -27,6 +27,11 @@ export const getTranscription = (id) => {
     .then((res) => res.text());
 }
 
+export const getSummary = (id) => {
+  return fetch(`${process.env.REACT_APP_SERVER_API}/uploads/${id}/summary`)
+    .then((res) => res.text());
+}
+
 export const getState = (id) => {
   return fetch(`${process.env.REACT_APP_SERVER_API}/uploads/${id}/state`)
     .then((res) => {
