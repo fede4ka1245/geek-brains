@@ -1,5 +1,19 @@
-version: '3.8'
+version: '3.9'
 services:
+  worker:
+    build:
+      context: server
+      dockerfile: ./DockerfileWorker
+    restart: always
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
   back:
     build:
       context: server
